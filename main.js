@@ -32,6 +32,7 @@ $(document).ready(function()
                     var callback = (data, error) => {
                         // consume data
                         var statustext = 'ERROR : ';
+                        var succesStatusText = 'OUTPUT : ';
                         if (error) {
                             console.error(error);
                             return;
@@ -40,7 +41,7 @@ $(document).ready(function()
                         {
                             if(data.stdout.length!=0)
                             {
-                                $("#success-result").text(data.stdout);
+                                $("#success-result").text(succesStatusText+data.stdout);
                                 statustext = 'WARNING : ';
                             }
                             if(data.compile_stderr.length!=0)
