@@ -2,9 +2,12 @@ $(document).ready(function()
 {
     $('#ide-form').on('submit', function(e)
     {
-        $(".sub-btn").addClass("disabled");
         e.preventDefault();
+        $(".sub-btn").addClass("disabled");
         $(".fa-refresh").removeClass("d-none");
+        $("#success-result").text('');
+        $("#compile_stderr-result").text('');
+        $("#stderr-result").text('');
         var formData = new FormData(e.target);
         var object = {};
         formData.forEach(function(value, key){
@@ -24,7 +27,6 @@ $(document).ready(function()
                 if(res['status']=='success')
                 {
                     $(".ide-result").removeClass("d-none");
-                    $("#result").html('');
                     callback_url = res['data'].callbackUrl;
 
                     var callback = (data, error) => {
@@ -38,16 +40,16 @@ $(document).ready(function()
                         {
                             if(data.stdout.length!=0)
                             {
-                                $("#result").append('<span class="text text-success">OUTPUT : '+data.stdout+'</span><br>');
+                                $("#success-result").text(data.stdout);
                                 statustext = 'WARNING : ';
                             }
                             if(data.compile_stderr.length!=0)
                             {
-                                $("#result").append(statustext+data.compile_stderr+'<br>');
+                                $("#compile_stderr-result").text(statustext+data.compile_stderr);
                             }
                             if(data.stderr.length!=0)
                             {
-                                $("#result").append(statustext+data.stderr);
+                                $("#stderr-result").text(statustext+data.stderr);
                             }
 
 
