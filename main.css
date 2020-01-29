@@ -1,5 +1,6 @@
-.ide .ide-text-arae{
+.ide .ide-text-area{
     height: 350px;
+    resize: none;
 }
 
 .ide-custom-input-area{
@@ -10,9 +11,9 @@
     position: relative;
     top: 55px !important;
     border-radius: 5px;
-    max-height: 200px;
     min-height: 200px;
-    overflow-y: scroll;
+    width: 100%;
+    overflow-x: scroll;
     border: 1px solid #252627;
 }
 .input-icon-wrap {
@@ -135,4 +136,25 @@
     text-transform: uppercase;
     font-family: monospace;
     padding-bottom: 1px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:  rgb(150, 202, 245); 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2196F3;
 }
