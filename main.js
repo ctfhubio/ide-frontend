@@ -16,7 +16,7 @@ $(document).ready(function()
         $.ajax({
             type: 'POST',
             contentType: 'application/json',
-            url: 'https://ide-api.ctfhub.io',
+            url: 'https://ide.ctfhub.io/api/new',
             data : JSON.stringify(object),
             dataType: "json",
             success: function(res)
@@ -49,8 +49,8 @@ $(document).ready(function()
                             {
                                 $("#result").append(statustext+data.stderr);
                             }
-                                
-                            
+
+
                         }
                         $(".fa-refresh").addClass("d-none");
                         $(".sub-btn").removeClass("disabled");
@@ -58,7 +58,7 @@ $(document).ready(function()
 
                     // set upper bound
                     request(10, callback);
-                    
+
                     function request(retries, callback) {
                         axios.get(callback_url)
                         .then(response => {
@@ -97,9 +97,9 @@ $(document).ready(function()
                     $(".fa-refresh").addClass("d-none");
                     $(".sub-btn").removeClass("disabled");
                 }
-                
+
             },
-            error: function (jqXHR, exception) 
+            error: function (jqXHR, exception)
             {
                 var msg = '';
                 if (jqXHR.status === 0) {
@@ -124,7 +124,7 @@ $(document).ready(function()
         });
 
     });
-        
+
 });
 
 function showCustomInputBox() {
@@ -132,7 +132,7 @@ function showCustomInputBox() {
     var checkBox = document.getElementById("custom-input");
     // Get the output text
     var custom_input_area = document.getElementById("custominputarea");
-  
+
     // If the checkbox is checked, display the custom input box
     if (checkBox.checked == true){
         custom_input_area.classList.remove("d-none");
