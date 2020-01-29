@@ -60,7 +60,7 @@ $(document).ready(function()
                     };
 
                     // set upper bound
-                    request(10, callback);
+                    request(200, callback);
 
                     function request(retries, callback) {
                         axios.get(callback_url)
