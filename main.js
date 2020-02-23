@@ -1,8 +1,15 @@
 $(document).ready(function()
 {
+    $('#submitButton').on('click', function(){
+        $('#ide-form').submit();
+        $(".fa-play").addClass("d-none");
+    });
+
     $('#ide-form').on('submit', function(e)
     {
         e.preventDefault();
+        var value = window.editor.getValue();
+        $('#codearea').val(value);   
         $(".sub-btn").addClass("disabled");
         $(".fa-refresh").removeClass("d-none");
         $("#success-result").text('');
@@ -57,6 +64,8 @@ $(document).ready(function()
                         }
                         $(".fa-refresh").addClass("d-none");
                         $(".sub-btn").removeClass("disabled");
+                        $(".fa-play").removeClass("d-none");
+                        $(".sub-btn").blur(); 
                     };
 
                     // set upper bound
@@ -78,6 +87,10 @@ $(document).ready(function()
                                 else {
                                     // no retries left, calling callback with error
                                     callback([], "out of retries");
+                                    $(".fa-refresh").addClass("d-none");
+                                    $(".sub-btn").removeClass("disabled");
+                                    $(".fa-play").removeClass("d-none");
+                                    $(".sub-btn").blur(); 
                                 }
                             }
                         }).catch(error => {
@@ -90,6 +103,10 @@ $(document).ready(function()
                             else {
                                 // no retries left, calling callback with error
                                 callback([], error);
+                                $(".fa-refresh").addClass("d-none");
+                                $(".sub-btn").removeClass("disabled");
+                                $(".fa-play").removeClass("d-none");
+                                $(".sub-btn").blur(); 
                             }
                         });
                     }
@@ -99,6 +116,8 @@ $(document).ready(function()
                     $("#result").text('error..failed to connect with ngrok..');
                     $(".fa-refresh").addClass("d-none");
                     $(".sub-btn").removeClass("disabled");
+                    $(".fa-play").removeClass("d-none");
+                    $(".sub-btn").blur(); 
                 }
 
             },
@@ -106,7 +125,7 @@ $(document).ready(function()
             {
                 var msg = '';
                 if (jqXHR.status === 0) {
-                    msg = 'Not connect.\n Verify Network.';
+                    msg = 'Not connect.\nVerify Network.';
                 } else if (jqXHR.status == 404) {
                     msg = 'Requested page not found. [404]';
                 } else if (jqXHR.status == 500) {
@@ -123,6 +142,8 @@ $(document).ready(function()
                 alert(msg);
                 $(".fa-refresh").addClass("d-none");
                 $(".sub-btn").removeClass("disabled");
+                $(".fa-play").removeClass("d-none");
+                $(".sub-btn").blur(); 
             }
         });
 
@@ -143,4 +164,4 @@ function showCustomInputBox() {
         custom_input_area.classList.add("d-none");
         custom_input_area.value=null;
     }
-  }
+}

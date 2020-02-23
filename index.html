@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>ide-frontend</title>
-     <!-- Latest compiled and minified CSS -->
+
+    <!-- favicon -->
+    <link rel=icon href="https://raw.githubusercontent.com/ifaisalalam/ctfhub-laravel/master/public/assets/images/logo/logo.png?token=AF52XNLLTZHYJPFNNPWMIO26LQRPO">
+
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./main.css">
 
@@ -20,58 +25,83 @@
 
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- add buffer poly -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/buffer-v6-polyfill@1.0.5/index.min.js"></script> -->
+   
+    <!-- add editor loader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.17.1/min/vs/loader.js"></script>
 
+    <!-- axios cdn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js" integrity="sha256-bd8XIKzrtyJ1O5Sh3Xp3GiuMIzWC42ZekvrMMD4GxRg=" crossorigin="anonymous"></script>
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="container-fluid">
-        <div class="container">
+        <!-- navbar -->
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <img src="https://raw.githubusercontent.com/ifaisalalam/ctfhub-laravel/master/public/assets/images/logo/logo.png?token=AF52XNLLTZHYJPFNNPWMIO26LQRPO"
+                alt="logo" height="50" class="mt-n2">
+                <a class="navbar-brand text-dark" href="#">
+                    Ctfhub-ide
+                </a>
+              </div>
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button class="btn btn-primary sub-btn float-right" id="submitButton"> 
+                        <i class="fa fa-refresh fa-spin d-none"></i> 
+                        <i class="fa fa-play"></i>
+                        Run 
+                    </button></li>
+              </ul>
+            </div>
+          </nav>
+        <!-- EOF navbar -->
+        <div class="ide-container">
             <!-- IDE-Section -->
-            <div>
-                <h2 class="pt-3">CTFHUB-IDE</h2>
-                <hr/>
+            <div class="ide-width mt-5">
+                
                 <form id="ide-form">
                     <div class="input-icon-wrap">
                         <select name="lang" id="lang" class="select-css">
-                            <option value="cpp">C++</option>
-                            <option value="c">C</option>
-                            <option value="python2">Python 2</option>
-                            <option value="python3">Python 3</option>
-                            <option value="nodejs8">Node.js 8</option>
+                            <option data="cpp" value="cpp">C++</option>
+                            <option data="c" value="c">C</option>
+                            <option data="python" value="python2">Python 2</option>
+                            <option data="python" value="python3">Python 3</option>
+                            <option data="javascript" value="nodejs8">Node.js 8</option>
                         </select>
                         <span class="input-close-icon">
                             <i class="fa fa-caret-down"></i>
                         </span>
                     </div>
                     <div class="form-group pt-1 ide">
-                        <textarea name="source" class="form-control ide-text-area" id="codearea" placeholder="Do your stuff here..." required=""></textarea>
+                        <div id="container" class="ide-text-area"></div>
+                        <input type="hidden" name="source" id="codearea"/>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-4">
-                            <div class="r-switch-pannel">
-                                <label for="switch" class="mt-1 pl-1 pr-1" id="switch-text">Custom Input </label>
-                                <label class="switch" id="switch">
-                                    <input type="checkbox" id="custom-input" onclick="showCustomInputBox()">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-5">
-                            <textarea name="stdin" class="form-control mt-1 ide-custom-input-area d-none" id="custominputarea" placeholder=""></textarea>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <button type="submit" class="btn btn-primary sub-btn float-right mt-1"> <i class="fa fa-refresh fa-spin d-none"></i> Submit</button>
-                        </div>
-                    </div>
-
-                </form>
+                
             </div>
             <!-- // EOF IDE-section -->
             <!--  Resuilt-section -->
-            <div>
-                <div class="form-group ide-result bg-dark text-white p-2 ">
+            <div class="result-width mt-5 pl-5" >
+
+                <div class=" row h-50 ide-custom-in">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="r-switch-pannel">
+                            <label for="switch" class="mt-1 pl-1 pr-1" id="switch-text">Custom Input </label>
+                            <label class="switch" id="switch">
+                                <input type="checkbox" id="custom-input" onclick="showCustomInputBox()">
+                                <span class="slider round"></span>
+                            </label>
+                            <textarea name="stdin" class="form-control ide-custom-input-area mt-3 d-none" id="custominputarea" placeholder=""></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                </form>
+
+                <div class="ide-result bg-light ml-n3 text-white p-2 h-50">
                     <!-- ide result will be shown here -->
                     <pre><code id='success-result' class="text-success"></code></pre>
                     <br/>
@@ -83,6 +113,7 @@
             <!-- // EOF Result-Section -->
         </div>
     </div>
+<script src="./editor.js"></script>
 <script src="./main.js"></script>
 </body>
 </html>
