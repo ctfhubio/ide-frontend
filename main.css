@@ -20,6 +20,7 @@ body .container-fluid{
     height: 600px;
     width: auto;
     overflow: hidden;
+    border: 1px solid #222;
 }
 
 
@@ -184,6 +185,14 @@ code{
   height: 600px;
 }
 
+.spinner{
+  position: absolute;
+  top:50%;
+  left:22%;
+  color: #ccc;
+  font-size: 60px !important;
+}
+
 @media only screen and (max-width: 900px) {
   .ide-container{
     display: block;
@@ -197,5 +206,8 @@ code{
   }
   .footer{
     margin-top: 55px;
+  }
+  .spinner{
+    left: 45%;
   }
 }
