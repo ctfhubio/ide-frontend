@@ -157,11 +157,15 @@ function showCustomInputBox() {
     // Get the output text
     var custom_input_area = document.getElementById("custominputarea");
 
+    var resultBox = document.getElementById("result-box");
+
     // If the checkbox is checked, display the custom input box
     if (checkBox.checked == true){
         custom_input_area.classList.remove("d-none");
+        resultBox.style.height = "300px";
     } else {
         custom_input_area.classList.add("d-none");
         custom_input_area.value=null;
+        resultBox.style.height = "535px";
     }
 }

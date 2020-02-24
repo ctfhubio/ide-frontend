@@ -59,7 +59,7 @@
             </div>
           </nav>
         <!-- EOF navbar -->
-        <div class="ide-container">
+        <div class="ide-container pt-5">
             <!-- IDE-Section -->
             <div class="ide-width mt-5">
                 
@@ -86,8 +86,8 @@
             <!--  Resuilt-section -->
             <div class="result-width mt-5 pl-5" >
 
-                <div class=" row h-50 ide-custom-in">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class=" row ide-custom-in">
+                    <div class="col-sm-12 col-md-12 col-lg-12 c-i-box">
                         <div class="r-switch-pannel">
                             <label for="switch" class="mt-1 pl-1 pr-1" id="switch-text">Custom Input </label>
                             <label class="switch" id="switch">
@@ -101,17 +101,25 @@
                 
                 </form>
 
-                <div class="ide-result bg-light ml-n3 text-white p-2 h-50">
+                <div class="ide-result bg-light ml-n3 text-white p-2 " id="result-box">
                     <!-- ide result will be shown here -->
-                    <pre><code id='success-result' class="text-success"></code></pre>
-                    <br/>
-                    <pre><code id='compile_stderr-result' class="text-danger"></code></pre>
-                    <br/>
-                    <pre><code id='stderr-result' class="text-danger"></code></pre>
+                    <code class="text-dark">output:</code>
+                    <code id='success-result' class="text-success"></code>
+                 
+                    <code id='compile_stderr-result' class="text-danger"></code>
+                
+                    <code id='stderr-result' class="text-danger"></code>
                 </div>
             </div>
             <!-- // EOF Result-Section -->
         </div>
+        <footer class="footer bg-light p-2">
+            <div>
+                <center>
+                    &copy;ctfhub 2020
+                </center>
+            </div>
+        </footer>
     </div>
 <script src="./editor.js"></script>
 <script src="./main.js"></script>

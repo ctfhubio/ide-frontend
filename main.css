@@ -1,13 +1,20 @@
-body{
+body .container-fluid{
   margin: 0;
   padding: 0;
 }
 .navbar{
-  box-shadow: 0px 3px 8px #ccc;
+  position:fixed;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  z-index: 9999 !important;
 }
 .navbar-brand{
   font-size: 25px;
   font-family: 'Pacifico' ;
+}
+.footer{
+  position: relative;
+  border-top: 1px solid #eee;
 }
 .ide .ide-text-area{
     height: 600px;
@@ -15,27 +22,33 @@ body{
     overflow: hidden;
 }
 
+
 .ide-custom-input-area{
-height: 200px !important;
+  min-height: 220px;
+  max-height: 220px !important;
 }
 .ide-custom-in{
   position: relative;
-  border-radius: 5px;
-  min-height: 200px;
+  border-radius: 0px;
   width: 100%;
   overflow:hidden;
   box-sizing: border-box;
-  box-shadow: 0px 0px 7px #ccc;
+  border: 1px solid #ccc;
+  height: auto;
+  padding-bottom: 10px;
 }
-
+code{
+  display: block;
+  white-space: pre-wrap;
+}
 .ide-result {
     position: relative;
     top: 50px !important;
-    border-radius: 5px;
-    min-height: 200px;
+    border-radius: 0px;
+    min-height: 300px;
+    height: 535px;
     width: 100%;
-    overflow-x: scroll;
-    box-shadow: 0px 0px 7px #ccc;
+    border: 1px solid #ccc;
 }
 .input-icon-wrap {
     border: 1px solid #ddd;
@@ -159,6 +172,7 @@ height: 200px !important;
 
 .ide-container{
   display: flex;
+  padding: 10px;
 }
 
 .ide-width{
@@ -180,5 +194,8 @@ height: 200px !important;
   
   .result-width{
     width: 100%;
+  }
+  .footer{
+    margin-top: 55px;
   }
 }
