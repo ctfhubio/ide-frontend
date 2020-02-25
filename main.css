@@ -50,6 +50,7 @@ code{
     height: 535px;
     width: 100%;
     border: 1px solid #ccc;
+    overflow-y: scroll;
 }
 .input-icon-wrap {
     border: 1px solid #ddd;
