@@ -10,7 +10,8 @@ body .container-fluid{
 }
 .navbar-brand{
   font-size: 25px;
-  font-family: 'Pacifico' ;
+  font-family: 'Lacquer' ;
+  text-transform: uppercase;
 }
 .footer{
   position: relative;
@@ -38,10 +39,6 @@ body .container-fluid{
   height: auto;
   padding-bottom: 10px;
 }
-code{
-  display: block;
-  white-space: pre-wrap;
-}
 .ide-result {
     position: relative;
     top: 50px !important;
@@ -50,7 +47,7 @@ code{
     height: 535px;
     width: 100%;
     border: 1px solid #ccc;
-    overflow-y: auto;
+    overflow: auto;
 }
 .input-icon-wrap {
     border: 1px solid #ddd;

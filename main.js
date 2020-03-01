@@ -1,20 +1,33 @@
 $(document).ready(function()
 {
     $('#submitButton').on('click', function(){
-        $('#ide-form').submit();
-        $(".fa-play").addClass("d-none");
+        var value = window.editor.getValue();
+        if(value.length!=0)
+        {
+            $('#ide-form').submit();
+            $(".fa-play").addClass("d-none");
+            $("#submitButton").attr("disabled","true");
+        }
+        else
+        {
+            alert ("Nothing to Process!");
+            $(".sub-btn").blur(); 
+        }
     });
 
     $('#ide-form').on('submit', function(e)
     {
         e.preventDefault();
         var value = window.editor.getValue();
+
+        
         $('#codearea').val(value);   
         $(".sub-btn").addClass("disabled");
         $(".fa-refresh").removeClass("d-none");
         $("#success-result").text('');
         $("#compile_stderr-result").text('');
         $("#stderr-result").text('');
+        $("#stdTime").text('');
         var formData = new FormData(e.target);
         var object = {};
         formData.forEach(function(value, key){
@@ -40,6 +53,7 @@ $(document).ready(function()
                         // consume data
                         var statustext = 'ERROR : ';
                         var succesStatusText = 'OUTPUT : ';
+                        var stdTime = 'Time : ';
                         if (error) {
                             console.error(error);
                             return;
@@ -51,13 +65,20 @@ $(document).ready(function()
                                 $("#success-result").text(succesStatusText+data.stdout);
                                 statustext = 'WARNING : ';
                             }
+                            
                             if(data.compile_stderr.length!=0)
                             {
                                 $("#compile_stderr-result").text(statustext+data.compile_stderr);
                             }
+                            
                             if(data.stderr.length!=0)
                             {
                                 $("#stderr-result").text(statustext+data.stderr);
+                            }
+                           
+                            if(data.time_log.length!=0)
+                            {
+                                $("#stdTime").text(stdTime+data.time_log);
                             }
 
 
@@ -66,12 +87,18 @@ $(document).ready(function()
                         $(".sub-btn").removeClass("disabled");
                         $(".fa-play").removeClass("d-none");
                         $(".sub-btn").blur(); 
+                        $("#submitButton").removeAttr("disabled");
                     };
+
+                    function sleep(ms) {
+                        return new Promise(resolve => setTimeout(resolve, ms));
+                    }
 
                     // set upper bound
                     request(200, callback);
 
-                    function request(retries, callback) {
+                    async function request(retries, callback) {
+                        await sleep(1000);
                         axios.get(callback_url)
                         .then(response => {
                             if(response['data'].status != 'pending') {
@@ -86,11 +113,13 @@ $(document).ready(function()
                                 }
                                 else {
                                     // no retries left, calling callback with error
+                                    alert('Please submit Again!');
                                     callback([], "out of retries");
                                     $(".fa-refresh").addClass("d-none");
                                     $(".sub-btn").removeClass("disabled");
                                     $(".fa-play").removeClass("d-none");
                                     $(".sub-btn").blur(); 
+                                    $("#submitButton").removeAttr("disabled");
                                 }
                             }
                         }).catch(error => {
@@ -103,10 +132,12 @@ $(document).ready(function()
                             else {
                                 // no retries left, calling callback with error
                                 callback([], error);
+                                alert('Please Submit Again!');
                                 $(".fa-refresh").addClass("d-none");
                                 $(".sub-btn").removeClass("disabled");
                                 $(".fa-play").removeClass("d-none");
                                 $(".sub-btn").blur(); 
+                                $("#submitButton").removeAttr("disabled");
                             }
                         });
                     }
@@ -118,6 +149,7 @@ $(document).ready(function()
                     $(".sub-btn").removeClass("disabled");
                     $(".fa-play").removeClass("d-none");
                     $(".sub-btn").blur(); 
+                    $("#submitButton").removeAttr("disabled");
                 }
 
             },
@@ -144,9 +176,10 @@ $(document).ready(function()
                 $(".sub-btn").removeClass("disabled");
                 $(".fa-play").removeClass("d-none");
                 $(".sub-btn").blur(); 
+                $("#submitButton").removeAttr("disabled");
             }
         });
-
+    
     });
 
 });
@@ -169,3 +202,5 @@ function showCustomInputBox() {
         resultBox.style.height = "535px";
     }
 }
+
+showCustomInputBox();

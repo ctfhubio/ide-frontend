@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>ide-frontend</title>
+    <title>CTFHUB-IDE</title>
 
     <!-- favicon -->
     <link rel=icon href="https://raw.githubusercontent.com/ifaisalalam/ctfhub-laravel/master/public/assets/images/logo/logo.png?token=AF52XNLLTZHYJPFNNPWMIO26LQRPO">
@@ -33,7 +33,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.17.1/min/vs/loader.js"></script>
 
     <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -78,7 +79,6 @@
                     </div>
                     <div class="form-group pt-1 ide">
                         <div id="container" class="ide-text-area">
-                            <i class="spinner fa fa-refresh fa-spin"></i>
                         </div>
                         <input type="hidden" name="source" id="codearea"/>
                     </div>
@@ -106,11 +106,13 @@
                 <div class="ide-result bg-light ml-n3 text-white p-2 " id="result-box">
                     <!-- ide result will be shown here -->
                     <code class="text-dark">output:</code>
-                    <code id='success-result' class="text-success"></code>
+                    <div id='success-result' class="text-success"></div>
                  
-                    <code id='compile_stderr-result' class="text-danger"></code>
+                    <div id='compile_stderr-result' class="text-danger"></div>
                 
-                    <code id='stderr-result' class="text-danger"></code>
+                    <div id='stderr-result' class="text-danger"></div>
+
+                    <div id="stdTime" class="text-info" ></div>
                 </div>
             </div>
             <!-- // EOF Result-Section -->
